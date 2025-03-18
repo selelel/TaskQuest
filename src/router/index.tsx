@@ -4,6 +4,7 @@ import { useState } from "react";
 import POCpage from '@/page/poc';
 import PrivateRoute from "./routers/privateRoute";
 import { Route, Routes as _Routes_ } from "react-router-dom";
+import SignInPage from "@/page/auth/signin"
 
 function RoutesComponent() {
     const [auth, __] = useState(false);
@@ -20,7 +21,7 @@ function RoutesComponent() {
             />
             <Route 
                 path="/signin" 
-                element={<PublicRoute authenticated={auth}><>Sign In</></PublicRoute>} 
+                element={<PublicRoute authenticated={auth}><SignInPage/></PublicRoute>} 
             />
             <Route 
                 path="/signup" 
