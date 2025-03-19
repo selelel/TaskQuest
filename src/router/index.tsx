@@ -1,32 +1,41 @@
-
 import PublicRoute from "./routers/publicRoute";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import POCpage from '@/page/poc';
 import PrivateRoute from "./routers/privateRoute";
-import { Route, Routes as _Routes_ } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import SignInPage from "@/page/auth/signin"
+import SignUpPage from "@/page/auth/signup"
+import { auth } from "@/~core/firebase/client";
 
 function RoutesComponent() {
-    const [auth, __] = useState(false);
+    const [userSignedIn, setUserSignedIn] = useState(false);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUserSignedIn(!!user);
+        });
+        return () => unsubscribe();
+    }, []);
 
     return (
-        <_Routes_> {/* Use Routes instead of __Routes__ */}
+        <Routes>
             <Route 
                 path="/poc" 
-                element={<PrivateRoute authenticated={auth}><POCpage /></PrivateRoute>} 
+                element={<PrivateRoute authenticated={userSignedIn}><POCpage /></PrivateRoute>} 
             />
             <Route 
                 path="/" 
-                element={<PublicRoute authenticated={auth}><>Index</></PublicRoute>} 
+                element={<PublicRoute authenticated={userSignedIn}><>Index</></PublicRoute>} 
             />
             <Route 
                 path="/signin" 
-                element={<PublicRoute authenticated={auth}><>Sign In</></PublicRoute>} 
+                element={<PublicRoute authenticated={userSignedIn}><SignInPage/></PublicRoute>} 
             />
             <Route 
                 path="/signup" 
-                element={<PublicRoute authenticated={auth}><>Sign Up</></PublicRoute>} 
+                element={<PublicRoute authenticated={userSignedIn}><SignUpPage/></PublicRoute>} 
             />
-        </_Routes_>
+        </Routes>
     );
 }
 

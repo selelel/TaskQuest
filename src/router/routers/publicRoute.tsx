@@ -1,12 +1,19 @@
 import { RouterType } from "@/types/router";
-import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function PublicRoute({
     authenticated,
     redirect = "/poc",
     children
 }: RouterType) {
-    if (authenticated) return <Navigate to={redirect} replace />;
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (authenticated) {
+            navigate(redirect, { replace: true }); 
+        }
+    }, [authenticated, navigate, redirect]);
 
-    return children;
+    return authenticated ? children : null;
 }
