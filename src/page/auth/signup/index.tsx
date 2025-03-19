@@ -18,12 +18,18 @@ function IndexPage() {
   const navigate = useNavigate();
   const { signUp } = useAuth();
   const form = useForm({
-    resolver: zodResolver(sign_up_schema)
+    resolver: zodResolver(sign_up_schema),
+    defaultValues:{
+      email: "",
+      password: "",
+      confirmPassword: ""
+    }
   });
 
   const handleSubmit = async({email, password}: { email: string; password: string }) => {
     try {
-      await signUp(email, password);
+      const __sign_up__ = await signUp(email, password);
+      // TODO: ADD USER UPON SUCCESSFUL SIGNUP
       navigate("/");
     } catch (error) {
       console.error("Sign up failed", error);

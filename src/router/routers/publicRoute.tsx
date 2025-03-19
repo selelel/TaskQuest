@@ -15,5 +15,5 @@ export default function PublicRoute({
         }
     }, [authenticated, navigate, redirect]);
 
-    return authenticated ? children : null;
+    return !authenticated ? children : null;
 }
