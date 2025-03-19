@@ -14,7 +14,11 @@ function IndexPage() {
   const navigate = useNavigate();
   const { signIn } = useAuth();
   const form = useForm({
-    resolver: zodResolver(sign_in_schema)
+    resolver: zodResolver(sign_in_schema),
+    defaultValues:{
+      email: "",
+      password: ""
+    }
   });
 
   const handleSubmit = async({email, password}: { email: string; password: string }) => {
