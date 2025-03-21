@@ -15,5 +15,5 @@ export default function PrivateRoute({
         }
     }, [authenticated, navigate, redirect]);
 
-    return authenticated ? children : null;
+    return <>{children}</>;
 }
