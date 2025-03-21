@@ -29,8 +29,10 @@ function IndexPage() {
   const handleSubmit = async({email, password}: { email: string; password: string }) => {
     try {
       const __sign_up__ = await signUp(email, password);
+
+      if(!!__sign_up__.uid) navigate("/");
       // TODO: ADD USER UPON SUCCESSFUL SIGNUP
-      navigate("/");
+      
     } catch (error) {
       console.error("Sign up failed", error);
     }
