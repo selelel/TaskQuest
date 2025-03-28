@@ -145,7 +145,7 @@ const useStore = create<Store>((set, get) => ({
   setSelectedTodoId: (id: string | null) => set({ selectedTodoId: id }),
 
   deleteTodo: () => {
-    const { dialogs, todos } = get();
+    const { dialogs } = get();
     if (!dialogs.deleteDialog) return;
 
     set(state => ({

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { ChevronDown, ChevronUp, Plus, Trash2, Timer } from "lucide-react";
+import { Plus, Trash2, Timer } from "lucide-react";
 import { KeyboardEvent, ChangeEvent } from "react";
 
 // Create audio element for alarm sound
@@ -51,14 +51,12 @@ export default function TodoItem({
   todo,
   onToggle,
   onToggleSubTodo,
-  onToggleExpansion,
   onDelete,
   onAddSubTodo,
   selectedTodoId,
   setSelectedTodoId,
   newSubTodo,
   setNewSubTodo,
-  onSetTimer,
   onToggleTimer,
   onUpdateTimer,
   isSelected,
