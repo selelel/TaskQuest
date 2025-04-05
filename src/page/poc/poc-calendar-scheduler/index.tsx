@@ -5,18 +5,18 @@ import { Calendar } from "@/components/ui/calendar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CalendarTodo, RecurrenceType } from './types';
+import { RecurrenceType } from './types';
 import useCalendarStore from './store';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay } from 'date-fns';
-import { Plus, Trash2, Calendar as CalendarIcon, Clock, Repeat } from "lucide-react";
+import { format, isSameDay } from 'date-fns';
+import { Plus, Trash2, Calendar as CalendarIcon, Repeat } from "lucide-react";
 
 export default function CalendarScheduler() {
   const {
-    currentDate,
+    // currentDate,
     selectedDate,
     todos,
     view,
-    setCurrentDate,
+    // setCurrentDate,
     setSelectedDate,
     setView,
     addTodo,
@@ -31,10 +31,10 @@ export default function CalendarScheduler() {
     daysOfWeek: [] as number[]
   });
 
-  const daysInMonth = eachDayOfInterval({
-    start: startOfMonth(currentDate),
-    end: endOfMonth(currentDate)
-  });
+//   const daysInMonth = eachDayOfInterval({
+//     start: startOfMonth(currentDate),
+//     end: endOfMonth(currentDate)
+//   });
 
   const getTodosForDate = (date: Date) => {
     return todos.filter(todo => {
