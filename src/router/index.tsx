@@ -1,6 +1,7 @@
 import PublicRoute from "./routers/publicRoute";
 import { useEffect, useState } from "react";
 import POCpage from '@/page/poc';
+import POCCalendarSchedulerpage from '@/page/poc/poc-calendar-scheduler';
 import PrivateRoute from "./routers/privateRoute";
 import { Route, Routes } from "react-router-dom";
 import SignInPage from "@/page/auth/signin"
@@ -22,6 +23,10 @@ function RoutesComponent() {
             <Route 
                 path="/poc" 
                 element={<PrivateRoute authenticated={userSignedIn}><POCpage /></PrivateRoute>} 
+            />
+            <Route 
+                path="/poc-calendar-scheduler" 
+                element={<POCCalendarSchedulerpage />} 
             />
             <Route 
                 path="/" 
